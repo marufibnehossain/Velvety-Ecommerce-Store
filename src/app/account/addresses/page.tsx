@@ -90,7 +90,7 @@ export default function AddressesPage() {
           setAddresses((prev) => [...prev, created]);
           setModal(null);
         }
-      } else {
+      } else if (modal) {
         const res = await fetch(`/api/account/addresses/${modal.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

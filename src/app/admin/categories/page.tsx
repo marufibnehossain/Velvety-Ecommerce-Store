@@ -67,7 +67,7 @@ export default function AdminCategoriesPage() {
           setSaving(false);
           return;
         }
-      } else {
+      } else if (modal) {
         const res = await fetch(`/api/admin/categories/${modal.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

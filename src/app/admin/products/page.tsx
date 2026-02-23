@@ -160,7 +160,7 @@ export default function AdminProductsPage() {
           setSaving(false);
           return;
         }
-      } else {
+      } else if (modal) {
         const res = await fetch(`/api/admin/products/${modal.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

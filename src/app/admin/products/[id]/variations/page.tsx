@@ -97,7 +97,7 @@ export default function ProductVariationsPage() {
           setSaving(false);
           return;
         }
-      } else {
+      } else if (attrModal) {
         const res = await fetch(`/api/admin/products/${productId}/attributes/${attrModal.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -203,7 +203,7 @@ export default function ProductVariationsPage() {
           setSaving(false);
           return;
         }
-      } else {
+      } else if (varModal) {
         const res = await fetch(`/api/admin/products/${productId}/variations/${varModal.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
