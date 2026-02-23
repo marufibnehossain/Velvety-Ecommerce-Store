@@ -70,11 +70,16 @@ git push -u origin main
 4. **Environment** (see step 4 below): add env vars before first deploy.
 
 5. **Advanced** (optional):
-   - **Release Command** (runs after build, before new version goes live):
+   - **Pre-deploy command** (Render’s name; sometimes called “release command” elsewhere). Runs after build, before the new version goes live. **Only available on paid web services** — free tier does not show this field.
+   - If you have it (paid plan), set it to:
      ```bash
-     npx prisma db push
+     npx prisma db push && npx prisma db seed
      ```
-     This applies your Prisma schema to the Render Postgres DB. Use this for a fresh DB; if you prefer migrations, use `npx prisma migrate deploy` and run migrations yourself.
+     This applies your Prisma schema to the external DB and seeds data. For migrations instead, use `npx prisma migrate deploy`.
+   - **If you’re on the free plan**, put push + seed in the **Build Command** instead:
+     ```bash
+     npm install && npx prisma generate && npm run build && npx prisma db push && npx prisma db seed
+     ```
 
 6. Click **Create Web Service**. Render will clone the repo, run the build, and start the app.
 
@@ -99,7 +104,7 @@ In the Web Service → **Environment** tab, add:
 ## 5. First deploy and schema
 
 1. Trigger a deploy (e.g. **Manual Deploy** → **Deploy latest commit**).
-2. If you set **Release Command** to `npx prisma db push`, Render will run it after the build and create/update tables in your external DB. If not, run once from your machine:
+2. If you set **Pre-deploy command** (paid plan) to `npx prisma db push && npx prisma db seed`, Render will run it after the build. On the **free plan**, use the extended Build Command above so push and seed run during build. Otherwise run once from your machine:
    ```bash
    set DATABASE_URL=postgresql://...   # your Neon or Supabase URL
    npx prisma db push
@@ -152,7 +157,7 @@ With **Auto-Deploy** enabled (default), every push to the connected branch (e.g.
 1. Create a **PostgreSQL** database on **Neon** or **Supabase** (free tier) and copy the connection string.
 2. Create a **Web Service** on Render linked to your GitHub repo; set **Build** to `npm install && npx prisma generate && npm run build` and **Start** to `npm run start`.
 3. Add **Environment variables** in Render: `DATABASE_URL` (Neon/Supabase URL), `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, Resend vars.
-4. Use **Release Command** `npx prisma db push` (or run it once locally) so the schema exists in your external DB.
+4. Use **Pre-deploy command** `npx prisma db push && npx prisma db seed` (paid plan only), or the extended **Build Command** on the free plan, so the schema and seed exist in your external DB.
 5. Deploy and set `NEXTAUTH_URL` to your Render app URL.
 
 Your app uses **PostgreSQL** in `prisma/schema.prisma`, so it works with Neon or Supabase. If you see raw-SQL errors after deploy, the code may need to be updated from SQLite-style to PostgreSQL syntax.
