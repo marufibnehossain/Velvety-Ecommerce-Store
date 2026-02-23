@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e8ebe6"/>
+  <ellipse cx="200" cy="180" rx="120" ry="40" fill="#4a5c4a"/>
+  <ellipse cx="200" cy="160" rx="100" ry="50" fill="#6b736b"/>
+  <text x="200" y="260" font-family="sans-serif" font-size="14" fill="#6b736b" text-anchor="middle">Natural ingredients</text>
+</svg>

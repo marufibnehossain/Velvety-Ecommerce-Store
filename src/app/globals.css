@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #faf8f5;
+  --surface: #f5f2ed;
+  --sage-1: #e8ebe6;
+  --sage-2: #d4dcd4;
+  --sage-dark: #4a5c4a;
+  --hero-text: #eef0eb;
+  --text: #2c332c;
+  --muted: #6b736b;
+  --border: #e0e4e0;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-bg text-text font-sans;
+  }
+}

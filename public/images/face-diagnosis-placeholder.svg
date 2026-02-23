@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#d4dcd4" stroke-width="2"/>
+  <path d="M 120 200 Q 200 120 280 200" fill="none" stroke="#d4dcd4" stroke-width="1.5"/>
+  <ellipse cx="160" cy="160" rx="20" ry="25" fill="none" stroke="#d4dcd4" stroke-width="1"/>
+  <ellipse cx="240" cy="160" rx="20" ry="25" fill="none" stroke="#d4dcd4" stroke-width="1"/>
+  <text x="200" y="320" font-family="sans-serif" font-size="12" fill="#6b736b" text-anchor="middle">Skin diagnosis</text>
+</svg>
